@@ -6,3 +6,5 @@
 # DO/build scratch
 .do/
 node_modules/
+# doctl serverless local deploy state
+functions/.deployed/
