@@ -1,0 +1,55 @@
+{
+  "headshot": "https://images.squarespace-cdn.com/content/v1/6125b02997268b140e420722/1741044610847-QLELO3OTM26J7F5U17KA/291A5005.jpg?format=750w",
+  "headshotCrop": 18,
+  "essence": "Work that blends music, film, and theater — identity, trauma, and human resilience.",
+  "bioLead": "Steve Brock is a Los Angeles–based actor, singer-songwriter, filmmaker, and screenwriter — a soulful storyteller whose work moves between the stage, the screen, and the recording booth. The through-line is the same in every medium:",
+  "bioEmphasis": "identity, trauma, and human resilience.",
+  "screen": [
+    {
+      "title": "Even Steve",
+      "year": "2015",
+      "blurb": "An alt-history of his own life — what might have been — as a young musician tries to make it in LA's singer-songwriter scene.",
+      "linkText": "Amazon Prime Video",
+      "linkUrl": "https://www.amazon.com/gp/video/detail/B08CMV3L87"
+    },
+    {
+      "title": "Making Amends",
+      "year": "2015",
+      "blurb": "A young woman confronts her father's addiction — and a choice that will define her. A film about love, responsibility, and resilience.",
+      "linkText": "Watch",
+      "linkUrl": "https://seb.ink/makingamends"
+    },
+    {
+      "title": "Echoes of Kerberos",
+      "year": "2020",
+      "blurb": "A thriller about a man in crisis. Steve wrote it, produced it, and played the lead — and it earned honors on the festival circuit.",
+      "linkText": "Fair Oaks Films →",
+      "linkUrl": "https://www.stevebrock.media/fof"
+    }
+  ],
+  "stage": [
+    {
+      "title": "My Calico Soul",
+      "year": "2018",
+      "blurb": "A one-man show — “a journey of bisexual identity and the labels we embrace,” built from personal stories, memory, and song.",
+      "linkText": "Watch on Vimeo",
+      "linkUrl": "https://vimeo.com/278872773"
+    },
+    {
+      "title": "My Fair Lady",
+      "year": "",
+      "blurb": "Musical theater and stage work — from My Fair Lady onward — where the acting and the singing meet.",
+      "linkText": "",
+      "linkUrl": ""
+    }
+  ],
+  "spotifyId": "67g4UE0I2iWdZvLvkRpqJH",
+  "connect": [
+    { "label": "Instagram", "url": "https://www.instagram.com/stevebrockactor" },
+    { "label": "Facebook", "url": "https://www.facebook.com/brockjazz" },
+    { "label": "TikTok", "url": "https://www.tiktok.com/@stevebrockactor" },
+    { "label": "Threads", "url": "https://www.threads.net/@stevebrockactor" },
+    { "label": "X", "url": "https://www.twitter.com/stevebrock" },
+    { "label": "Patreon", "url": "https://www.patreon.com/stevebrock" }
+  ]
+}

@@ -1,4 +1,43 @@
-<!DOCTYPE html>
+// build.mjs — regenerate index.html from content.json.
+// The DESIGN lives here (edit this file to change layout/style); the CONTENT lives in
+// content.json (edited via /admin). Run: `node build.mjs`. The GitHub Action runs this
+// automatically whenever content.json changes, so the served index.html is always static.
+
+import { readFileSync, writeFileSync } from 'node:fs';
+
+const c = JSON.parse(readFileSync(new URL('./content.json', import.meta.url), 'utf8'));
+
+// Escape text/attribute values for HTML. Content is Steve's own, but we escape so a stray
+// & or < in a blurb never breaks the page.
+const esc = (s) =>
+  String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+
+// A single work entry: italic title, optional year, blurb, optional single link.
+function entry(e) {
+  const year = e.year
+    ? ` <span style="font-family:Archivo;font-size:.8rem;color:var(--ink-faint);font-weight:500">${esc(e.year)}</span>`
+    : '';
+  const link = e.linkText && e.linkUrl
+    ? `\n      <p class="links"><a href="${esc(e.linkUrl)}">${esc(e.linkText)}</a></p>`
+    : '';
+  return `    <div class="entry">
+      <h3><em>${esc(e.title)}</em>${year}</h3>
+      <p>${esc(e.blurb)}</p>${link}
+    </div>`;
+}
+
+const screenEntries = c.screen.map(entry).join('\n');
+const stageEntries = c.stage.map(entry).join('\n');
+const connectRow = c.connect
+  .map((s, i) => `      <a href="${esc(s.url)}">${esc(s.label)}</a>${i < c.connect.length - 1 ? '<span class="sep">·</span>' : ''}`)
+  .join('\n');
+const sid = esc(c.spotifyId);
+
+const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -10,7 +49,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Steve Brock">
 <meta property="og:description" content="Actor · Singer-Songwriter · Filmmaker · Screenwriter — work that blends music, film, and theater.">
-<meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/6125b02997268b140e420722/1741044610847-QLELO3OTM26J7F5U17KA/291A5005.jpg?format=750w">
+<meta property="og:image" content="${esc(c.headshot).replace(/format=\\d+w/, 'format=1200w')}">
 <meta property="og:url" content="https://stevebrock.bio">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -192,10 +231,10 @@
 <!-- ============ COVER / MASTHEAD ============ -->
 <header class="cover">
   <div class="wrap">
-    <img class="portrait" src="https://images.squarespace-cdn.com/content/v1/6125b02997268b140e420722/1741044610847-QLELO3OTM26J7F5U17KA/291A5005.jpg?format=750w" alt="Steve Brock" width="168" height="168" style="object-position:center 18%">
+    <img class="portrait" src="${esc(c.headshot)}" alt="Steve Brock" width="168" height="168" style="object-position:center ${Number(c.headshotCrop) || 50}%">
     <h1 class="name">Steve Brock</h1>
     <p class="roles"><span>Actor</span> · <span>Singer-Songwriter</span> · <span>Filmmaker</span> · <span>Screenwriter</span></p>
-    <p class="essence">Work that blends music, film, and theater — identity, trauma, and human resilience.</p>
+    <p class="essence">${esc(c.essence)}</p>
   </div>
 </header>
 
@@ -214,8 +253,8 @@
   <section class="act" id="about" style="text-align:center">
     <p class="label" style="margin-bottom:1.1rem">Overture</p>
     <p style="font-family:'Bodoni Moda',serif;font-size:1.28rem;line-height:1.6;color:var(--ink-soft);max-width:34rem;margin:0 auto">
-      Steve Brock is a Los Angeles–based actor, singer-songwriter, filmmaker, and screenwriter — a soulful storyteller whose work moves between the stage, the screen, and the recording booth. The through-line is the same in every medium:
-      <em>identity, trauma, and human resilience.</em>
+      ${esc(c.bioLead)}
+      <em>${esc(c.bioEmphasis)}</em>
     </p>
   </section>
 
@@ -227,21 +266,7 @@
     </div>
     <p class="lede">Films written, directed, and produced under the <a href="https://www.stevebrock.media/fof">Fair&nbsp;Oaks&nbsp;Films</a> banner &mdash; stories built around the people inside them.</p>
 
-    <div class="entry">
-      <h3><em>Even Steve</em> <span style="font-family:Archivo;font-size:.8rem;color:var(--ink-faint);font-weight:500">2015</span></h3>
-      <p>An alt-history of his own life — what might have been — as a young musician tries to make it in LA's singer-songwriter scene.</p>
-      <p class="links"><a href="https://www.amazon.com/gp/video/detail/B08CMV3L87">Amazon Prime Video</a></p>
-    </div>
-    <div class="entry">
-      <h3><em>Making Amends</em> <span style="font-family:Archivo;font-size:.8rem;color:var(--ink-faint);font-weight:500">2015</span></h3>
-      <p>A young woman confronts her father's addiction — and a choice that will define her. A film about love, responsibility, and resilience.</p>
-      <p class="links"><a href="https://seb.ink/makingamends">Watch</a></p>
-    </div>
-    <div class="entry">
-      <h3><em>Echoes of Kerberos</em> <span style="font-family:Archivo;font-size:.8rem;color:var(--ink-faint);font-weight:500">2020</span></h3>
-      <p>A thriller about a man in crisis. Steve wrote it, produced it, and played the lead — and it earned honors on the festival circuit.</p>
-      <p class="links"><a href="https://www.stevebrock.media/fof">Fair Oaks Films →</a></p>
-    </div>
+${screenEntries}
   </section>
 
   <!-- ============ ACT II — ON STAGE ============ -->
@@ -251,15 +276,7 @@
       <h2 class="act-title">On Stage</h2>
     </div>
 
-    <div class="entry">
-      <h3><em>My Calico Soul</em> <span style="font-family:Archivo;font-size:.8rem;color:var(--ink-faint);font-weight:500">2018</span></h3>
-      <p>A one-man show — “a journey of bisexual identity and the labels we embrace,” built from personal stories, memory, and song.</p>
-      <p class="links"><a href="https://vimeo.com/278872773">Watch on Vimeo</a></p>
-    </div>
-    <div class="entry">
-      <h3><em>My Fair Lady</em></h3>
-      <p>Musical theater and stage work — from My Fair Lady onward — where the acting and the singing meet.</p>
-    </div>
+${stageEntries}
     <div class="entry">
       <h3>Casting &amp; press</h3>
       <p>Profiles and the full press kit for casting directors and collaborators.</p>
@@ -283,7 +300,7 @@
 
     <div class="entry" style="text-align:center">
       <p class="links" style="font-size:.86rem;line-height:2.1">
-        <a href="https://open.spotify.com/artist/67g4UE0I2iWdZvLvkRpqJH">Spotify</a><span class="sep">·</span>
+        <a href="https://open.spotify.com/artist/${sid}">Spotify</a><span class="sep">·</span>
         <a href="https://music.apple.com/us/artist/steve-brock/504613119">Apple Music</a><span class="sep">·</span>
         <a href="https://music.youtube.com/channel/UCbJ-PcUB8aGwpr9_OQMdQ4w">YouTube Music</a><span class="sep">·</span>
         <a href="https://music.amazon.com/artists/B0C5LFG67B/steve-brock">Amazon Music</a><span class="sep">·</span>
@@ -292,7 +309,7 @@
     </div>
 
     <div class="embed">
-      <iframe src="https://open.spotify.com/embed/artist/67g4UE0I2iWdZvLvkRpqJH?theme=0" height="352" loading="lazy" allow="encrypted-media" title="Steve Brock on Spotify"></iframe>
+      <iframe src="https://open.spotify.com/embed/artist/${sid}?theme=0" height="352" loading="lazy" allow="encrypted-media" title="Steve Brock on Spotify"></iframe>
     </div>
   </section>
 
@@ -303,12 +320,7 @@
       <h2 class="act-title">Connect</h2>
     </div>
     <p class="row">
-      <a href="https://www.instagram.com/stevebrockactor">Instagram</a><span class="sep">·</span>
-      <a href="https://www.facebook.com/brockjazz">Facebook</a><span class="sep">·</span>
-      <a href="https://www.tiktok.com/@stevebrockactor">TikTok</a><span class="sep">·</span>
-      <a href="https://www.threads.net/@stevebrockactor">Threads</a><span class="sep">·</span>
-      <a href="https://www.twitter.com/stevebrock">X</a><span class="sep">·</span>
-      <a href="https://www.patreon.com/stevebrock">Patreon</a>
+${connectRow}
     </p>
   </section>
 
@@ -388,3 +400,7 @@
 </script>
 </body>
 </html>
+`;
+
+writeFileSync(new URL('./index.html', import.meta.url), html);
+console.log('index.html written from content.json');

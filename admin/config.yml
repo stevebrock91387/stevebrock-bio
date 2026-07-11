@@ -1,0 +1,61 @@
+# Sveltia CMS config. Signs in with GitHub via the DO Function relay, edits content.json,
+# and commits to main — which triggers the build Action -> live in ~1 min.
+
+backend:
+  name: github
+  repo: stevebrock91387/stevebrock-bio
+  branch: main
+  # The GitHub OAuth relay (DO Function). Filled in once the relay is deployed.
+  base_url: https://faas-sfo3-7872a1dd.doserverless.co
+  auth_endpoint: api/v1/web/fn-235d4b39-8a3a-4926-bbd7-b91a85a6d964/auth/start
+
+# Required by the CMS even though the headshot is a URL field today.
+media_folder: assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  - name: content
+    label: Site content
+    files:
+      - name: main
+        label: Steve Brock — page content
+        file: content.json
+        editor:
+          preview: false
+        fields:
+          - { name: headshot, label: 'Headshot — image URL', widget: string, hint: 'Paste an image URL (e.g. from Squarespace).' }
+          - { name: headshotCrop, label: 'Headshot vertical crop (0 = top of photo, 100 = bottom)', widget: number, value_type: int, default: 18, min: 0, max: 100, step: 1 }
+          - { name: essence, label: 'Masthead line (under your name)', widget: text }
+          - { name: bioLead, label: 'Bio — main text', widget: text }
+          - { name: bioEmphasis, label: 'Bio — italic closing phrase', widget: string }
+          - name: screen
+            label: 'On Screen — films'
+            label_singular: film
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: year, label: Year, widget: string, required: false }
+              - { name: blurb, label: Description, widget: text }
+              - { name: linkText, label: 'Link text (e.g. “Amazon Prime Video”)', widget: string, required: false }
+              - { name: linkUrl, label: 'Link URL', widget: string, required: false }
+          - name: stage
+            label: 'On Stage'
+            label_singular: item
+            widget: list
+            summary: '{{fields.title}}'
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: year, label: Year, widget: string, required: false }
+              - { name: blurb, label: Description, widget: text }
+              - { name: linkText, label: 'Link text', widget: string, required: false }
+              - { name: linkUrl, label: 'Link URL', widget: string, required: false }
+          - { name: spotifyId, label: 'Spotify artist ID (from your Spotify artist URL)', widget: string }
+          - name: connect
+            label: 'Social links'
+            label_singular: link
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { name: label, label: Label, widget: string }
+              - { name: url, label: URL, widget: string }

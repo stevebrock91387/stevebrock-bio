@@ -18,3 +18,28 @@ packages:
         annotations:
           web-custom-options: true
         limits: {}
+  - name: auth
+    environment: {}
+    parameters: {}
+    annotations: {}
+    actions:
+      - name: start
+        binary: false
+        main: ''
+        runtime: 'nodejs:18'
+        web: true
+        parameters: {}
+        environment:
+          GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+          OAUTH_REDIRECT_URI: ${OAUTH_REDIRECT_URI}
+        limits: {}
+      - name: callback
+        binary: false
+        main: ''
+        runtime: 'nodejs:18'
+        web: true
+        parameters: {}
+        environment:
+          GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+          GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+        limits: {}

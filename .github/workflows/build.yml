@@ -1,0 +1,43 @@
+name: Build site from content.json
+
+# When content.json (or the builder) changes on main, regenerate index.html and commit it.
+# Committing index.html does NOT re-trigger this workflow (path filter excludes it), and the
+# push then triggers the normal GitHub Pages build. So an edit in /admin -> content.json commit
+# -> index.html rebuild -> live, automatically.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - content.json
+      - build.mjs
+      - .github/workflows/build.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Regenerate index.html
+        run: node build.mjs
+      - name: Commit if changed
+        run: |
+          git config user.name "site-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- index.html; then
+            echo "index.html unchanged — nothing to commit"
+          else
+            git add index.html
+            git commit -m "build: regenerate index.html from content.json"
+            git push
+          fi
