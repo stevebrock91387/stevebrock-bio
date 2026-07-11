@@ -55,7 +55,7 @@ const html = `<!DOCTYPE html>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,600&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,500;1,6..96,600&family=Archivo:wght@400;500;600&family=Alfa+Slab+One&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -88,9 +88,10 @@ const html = `<!DOCTYPE html>
   :root[data-theme="dark"]{--paper:#131110;--paper-2:#1a1715;--ink:#ece5d7;--ink-soft:#c3b8a6;--ink-faint:#8f8474;--rule:rgba(236,229,215,.16);--brass:#cca768;--brass-bright:#e0bd80;--field:#1d1917;}
 
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;overflow-x:hidden}
   body{
     margin:0;
+    overflow-x:hidden;
     background:var(--paper);
     color:var(--ink);
     font-family:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
@@ -119,9 +120,10 @@ const html = `<!DOCTYPE html>
     margin-bottom:1.9rem;
   }
   .name{
-    font-family:"Bodoni Moda",serif;font-weight:600;
-    font-size:clamp(2.7rem,9vw,4.4rem);line-height:1;margin:0;
-    letter-spacing:.005em;
+    font-family:"Alfa Slab One",serif;font-weight:400;
+    font-size:clamp(2.6rem,10vw,4.8rem);line-height:.92;margin:0;
+    text-transform:uppercase;letter-spacing:-.02em;
+    display:inline-block;transform:scaleX(.62);transform-origin:center;
   }
   .roles{
     margin:1.15rem 0 0;font-size:.8rem;letter-spacing:.24em;
@@ -151,7 +153,9 @@ const html = `<!DOCTYPE html>
   .act-head{margin-bottom:2rem;text-align:center}
   .act-no{display:block;margin-bottom:.5rem}
   .act-title{
-    font-family:"Bodoni Moda",serif;font-weight:600;font-size:2rem;margin:0;line-height:1.1;
+    font-family:"Alfa Slab One",serif;font-weight:400;font-size:2.6rem;margin:0;line-height:1.05;
+    text-transform:uppercase;letter-spacing:-.02em;
+    display:inline-block;transform:scaleX(.6);transform-origin:center;
   }
 
   .lede{
@@ -220,7 +224,8 @@ const html = `<!DOCTYPE html>
   @media (max-width:480px){
     body{font-size:16px}
     nav.bill a{margin:0 .45rem;font-size:.66rem}
-    .act-title{font-size:1.7rem}
+    .name{font-size:2.1rem}
+    .act-title{font-size:2rem}
   }
 </style>
 </head>
@@ -305,6 +310,7 @@ ${stageEntries}
         <a href="https://music.apple.com/us/artist/steve-brock/504613119">Apple Music</a><span class="sep">·</span>
         <a href="https://music.youtube.com/channel/UCbJ-PcUB8aGwpr9_OQMdQ4w">YouTube Music</a><span class="sep">·</span>
         <a href="https://music.amazon.com/artists/B0C5LFG67B/steve-brock">Amazon Music</a><span class="sep">·</span>
+        <a href="https://www.youtube.com/@SteveNBrockVEVO">VEVO</a><span class="sep">·</span>
         <a href="https://www.stevebrock.shop">Shop</a>
       </p>
     </div>
@@ -353,10 +359,11 @@ ${connectRow}
 
     <div class="contact-extra">
       <div class="grid">
-        <div><span class="k">Representation</span><a href="mailto:andy@midwesttalent.com">Andy Rooney · Midwest Talent</a></div>
-        <div><span class="k">Phone</span><a href="tel:+13238616679">(323) 861-6679</a></div>
+        <div><span class="k">Email</span><a href="mailto:steve@stevebrockmedia.com">steve@stevebrockmedia.com</a></div>
+        <div><span class="k">Phone</span><a href="tel:+16616454741">(661) 645-4741</a></div>
         <div><span class="k">vCard</span><a href="/contact.vcf" download="Steve-Brock.vcf">Save contact</a></div>
       </div>
+      <p style="margin-top:1.7rem;font-size:.82rem;color:var(--ink-faint)"><span class="k" style="display:inline;margin-right:.5rem">Management</span>Andy Rooney · Midwest Talent · <a href="mailto:andy@midwesttalent.com">andy@midwesttalent.com</a> · <a href="tel:+13238616679">(323) 861-6679</a></p>
     </div>
   </section>
 
