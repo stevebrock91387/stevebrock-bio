@@ -1,0 +1,7 @@
+# secrets — never commit
+.env
+.env.*
+*.key
+# DO/build scratch
+.do/
+node_modules/
