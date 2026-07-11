@@ -256,6 +256,7 @@ const html = `<!DOCTYPE html>
       ${esc(c.bioLead)}
       <em>${esc(c.bioEmphasis)}</em>
     </p>
+    ${c.recognition ? `<p class="label" style="margin:1.7rem auto 0;color:var(--brass);letter-spacing:.16em">${esc(c.recognition)}</p>` : ''}
   </section>
 
   <!-- ============ ACT I — ON SCREEN ============ -->
@@ -352,7 +353,7 @@ ${connectRow}
 
     <div class="contact-extra">
       <div class="grid">
-        <div><span class="k">Representation</span><a href="mailto:andy@midwesttalent.com">Andy · Midwest Talent</a></div>
+        <div><span class="k">Representation</span><a href="mailto:andy@midwesttalent.com">Andy Rooney · Midwest Talent</a></div>
         <div><span class="k">Phone</span><a href="tel:+13238616679">(323) 861-6679</a></div>
         <div><span class="k">vCard</span><a href="/contact.vcf" download="Steve-Brock.vcf">Save contact</a></div>
       </div>
