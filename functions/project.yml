@@ -1,0 +1,20 @@
+targetNamespace: ''
+parameters: {}
+packages:
+  - name: contact
+    environment: {}
+    parameters: {}
+    annotations: {}
+    actions:
+      - name: submit
+        binary: false
+        main: ''
+        runtime: 'nodejs:18'
+        web: raw
+        parameters: {}
+        environment:
+          RESEND_API_KEY: ${RESEND_API_KEY}
+          SITE_URL: ${SITE_URL}
+        annotations:
+          web-custom-options: true
+        limits: {}
