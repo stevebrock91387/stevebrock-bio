@@ -50,7 +50,17 @@ collections:
               - { name: blurb, label: Description, widget: text }
               - { name: linkText, label: 'Link text', widget: string, required: false }
               - { name: linkUrl, label: 'Link URL', widget: string, required: false }
+          - name: credits
+            label: 'Selected Credits (acting)'
+            label_singular: credit
+            widget: list
+            summary: '{{fields.title}} — {{fields.role}}'
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: role, label: Role / character, widget: string, required: false }
+              - { name: year, label: Year, widget: string, required: false }
           - { name: spotifyId, label: 'Spotify artist ID (from your Spotify artist URL)', widget: string }
+          - { name: featuredVideo, label: 'Featured music video — YouTube ID', widget: string, required: false, hint: 'Just the ID, e.g. d86rNbVh-A0 (from youtu.be/d86rNbVh-A0)' }
           - name: connect
             label: 'Social links'
             label_singular: link

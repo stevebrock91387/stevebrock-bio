@@ -32,6 +32,9 @@ function entry(e) {
 
 const screenEntries = c.screen.map(entry).join('\n');
 const stageEntries = c.stage.map(entry).join('\n');
+const creditRows = (c.credits || []).map(x =>
+  `    <p class="cred"><b>${esc(x.title)}</b><span class="r"> — ${esc(x.role)}</span>${x.year ? `<span class="y">${esc(x.year)}</span>` : ''}</p>`
+).join('\n');
 const connectRow = c.connect
   .map((s, i) => `      <a href="${esc(s.url)}">${esc(s.label)}</a>${i < c.connect.length - 1 ? '<span class="sep">·</span>' : ''}`)
   .join('\n');
@@ -176,6 +179,13 @@ const html = `<!DOCTYPE html>
   .entry .links a{margin-right:.2rem}
   .sep{color:var(--ink-faint);margin:0 .35rem}
 
+  /* selected credits */
+  .cred-list{max-width:33rem;margin:0 auto}
+  .cred{margin:.5rem 0;font-size:1rem;text-align:center;line-height:1.4}
+  .cred b{font-family:"Bodoni Moda",serif;font-style:italic;font-weight:600;color:var(--ink)}
+  .cred .r{color:var(--ink-soft)}
+  .cred .y{color:var(--ink-faint);font-size:.82rem;margin-left:.45rem}
+
   /* embed */
   .embed{margin:2.2rem 0 0;border-radius:12px;overflow:hidden;border:1px solid var(--rule)}
   .embed iframe{display:block;width:100%;border:0}
@@ -275,6 +285,17 @@ const html = `<!DOCTYPE html>
 ${screenEntries}
   </section>
 
+  <!-- ============ SELECTED CREDITS ============ -->
+  <section class="act" id="credits">
+    <div class="act-head">
+      <span class="label act-no">On Camera</span>
+      <h2 class="act-title">Selected Credits</h2>
+    </div>
+    <div class="cred-list">
+${creditRows}
+    </div>
+  </section>
+
   <!-- ============ ACT II — ON STAGE ============ -->
   <section class="act" id="stage">
     <div class="act-head">
@@ -318,6 +339,9 @@ ${stageEntries}
     <div class="embed">
       <iframe src="https://open.spotify.com/embed/artist/${sid}?theme=0" height="352" loading="lazy" allow="encrypted-media" title="Steve Brock on Spotify"></iframe>
     </div>
+    ${c.featuredVideo ? `<div class="embed" style="margin-top:1.4rem">
+      <iframe style="aspect-ratio:16/9;height:auto" src="https://www.youtube-nocookie.com/embed/${esc(c.featuredVideo)}" loading="lazy" allow="encrypted-media" allowfullscreen title="Steve Brock — featured music video"></iframe>
+    </div>` : ''}
   </section>
 
   <!-- ============ THE COMPANY / CONNECT ============ -->

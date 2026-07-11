@@ -44,7 +44,17 @@
       "linkUrl": ""
     }
   ],
+  "credits": [
+    { "title": "Echoes of Kerberos", "role": "Robert", "year": "2020" },
+    { "title": "Crash: The Animated Series", "role": "Nathan Swift (voice)", "year": "2024" },
+    { "title": "Let’s Be Real", "role": "Chef Rolf", "year": "2020–21" },
+    { "title": "Reality Queen!", "role": "Ted", "year": "2020" },
+    { "title": "The Brain Savers", "role": "Dr. Lee Schwamm (voice)", "year": "2023" },
+    { "title": "Confessions of a Union Buster", "role": "Marty Levitt", "year": "2023" },
+    { "title": "Sunshine Vice", "role": "Dewey", "year": "2018" }
+  ],
   "spotifyId": "67g4UE0I2iWdZvLvkRpqJH",
+  "featuredVideo": "d86rNbVh-A0",
   "connect": [
     { "label": "Instagram", "url": "https://www.instagram.com/stevebrockactor" },
     { "label": "Facebook", "url": "https://www.facebook.com/brockjazz" },
