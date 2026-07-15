@@ -8,3 +8,7 @@
 node_modules/
 # doctl serverless local deploy state
 functions/.deployed/
+
+# macOS
+.DS_Store
+**/.DS_Store
