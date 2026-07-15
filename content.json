@@ -1,10 +1,9 @@
 {
-  "headshot": "https://images.squarespace-cdn.com/content/v1/6125b02997268b140e420722/1741044610847-QLELO3OTM26J7F5U17KA/291A5005.jpg?format=750w",
+  "headshot": "images/SteveBrock.jpg",
   "headshotCrop": 18,
   "essence": "Work that blends music, film, and theater — identity, trauma, and human resilience.",
   "bioLead": "Steve Brock is a Los Angeles–based actor, singer-songwriter, filmmaker, and screenwriter — a soulful storyteller whose work moves between the stage, the screen, and the recording booth. The through-line is the same in every medium:",
   "bioEmphasis": "identity, trauma, and human resilience.",
-  "recognition": "66 festival wins · 24 nominations — for acting, writing & producing",
   "screen": [
     {
       "title": "Even Steve",
@@ -45,22 +44,69 @@
     }
   ],
   "credits": [
-    { "title": "Echoes of Kerberos", "role": "Robert", "year": "2020" },
-    { "title": "Crash: The Animated Series", "role": "Nathan Swift (voice)", "year": "2024" },
-    { "title": "Let’s Be Real", "role": "Chef Rolf", "year": "2020–21" },
-    { "title": "Reality Queen!", "role": "Ted", "year": "2020" },
-    { "title": "The Brain Savers", "role": "Dr. Lee Schwamm (voice)", "year": "2023" },
-    { "title": "Confessions of a Union Buster", "role": "Marty Levitt", "year": "2023" },
-    { "title": "Sunshine Vice", "role": "Dewey", "year": "2018" }
+    {
+      "title": "Echoes of Kerberos",
+      "role": "Robert",
+      "year": "2020"
+    },
+    {
+      "title": "Crash: The Animated Series",
+      "role": "Nathan Swift (voice)",
+      "year": "2024"
+    },
+    {
+      "title": "Let’s Be Real",
+      "role": "Chef Rolf",
+      "year": "2020–21"
+    },
+    {
+      "title": "Reality Queen!",
+      "role": "Ted",
+      "year": "2020"
+    },
+    {
+      "title": "The Brain Savers",
+      "role": "Dr. Lee Schwamm (voice)",
+      "year": "2023"
+    },
+    {
+      "title": "Confessions of a Union Buster",
+      "role": "Marty Levitt",
+      "year": "2023"
+    },
+    {
+      "title": "Sunshine Vice",
+      "role": "Dewey",
+      "year": "2018"
+    }
   ],
   "spotifyId": "67g4UE0I2iWdZvLvkRpqJH",
   "featuredVideo": "d86rNbVh-A0",
   "connect": [
-    { "label": "Instagram", "url": "https://www.instagram.com/stevebrockactor" },
-    { "label": "Facebook", "url": "https://www.facebook.com/brockjazz" },
-    { "label": "TikTok", "url": "https://www.tiktok.com/@stevebrockactor" },
-    { "label": "Threads", "url": "https://www.threads.net/@stevebrockactor" },
-    { "label": "X", "url": "https://www.twitter.com/stevebrock" },
-    { "label": "Patreon", "url": "https://www.patreon.com/stevebrock" }
-  ]
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/stevebrockactor"
+    },
+    {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/brockjazz"
+    },
+    {
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@stevebrockactor"
+    },
+    {
+      "label": "Threads",
+      "url": "https://www.threads.net/@stevebrockactor"
+    },
+    {
+      "label": "X",
+      "url": "https://www.twitter.com/stevebrock"
+    },
+    {
+      "label": "Patreon",
+      "url": "https://www.patreon.com/stevebrock"
+    }
+  ],
+  "recognition": "66 festival wins · 24 nominations — for acting, writing & producing"
 }
